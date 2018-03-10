@@ -1,0 +1,39 @@
+#Traverse the entire directory and process it
+
+
+import sys
+import re
+import os
+
+
+sys.setrecursionlimit(10000)
+
+
+def split(path):
+    patterns = []
+    index = 0
+    output = open(r'D:\\迅雷下载\\BreachCompilation\\000.txt', "w+", encoding='raw_unicode_escape')
+    with open(path, 'r', encoding='raw_unicode_escape', errors='ignore') as f:
+        for line in f:
+            domain = re.findall(".*@(.*):.*", line)
+            index = index + 1
+            # print(str)
+            # print(index)
+            if domain not in patterns:
+                patterns.append(domain)
+                output.write(str(domain))
+                output.write('\n')
+    output.close()
+
+
+def bianli(rootDir):
+    for root, dirs, files in os.walk(rootDir):
+        for file in files:
+            print(os.path.join(root, file))
+            split(os.path.join(root, file))
+        for dir in dirs:
+            bianli(dir)
+
+            
+rootDir = "D:\\迅雷下载\\BreachCompilation\\data"
+bianli(rootDir)
