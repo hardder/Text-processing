@@ -1,0 +1,14 @@
+import sys
+import re
+
+
+sys.setrecursionlimit(10000)
+
+with open('XXX.txt', 'r', encoding='raw_unicode_escape', errors='ignore') as f:
+    with open('XXX.txt.new', 'w', encoding='raw_unicode_escape', errors='ignore') as g:
+        for line in f:
+            m = []
+            m = re.findall('\S*\s*', line)
+            n = len(m)
+            if n < 4:
+                g.write(line)
