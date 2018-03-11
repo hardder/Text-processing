@@ -1,0 +1,19 @@
+#first way
+with open("fileread.txt","r",encoding="utf-8") as f:
+    lines = f.readlines()
+    #print(lines)
+with open("fileread.txt","w",encoding="utf-8") as f_w:
+    for line in lines:
+        if "tasting123" in line:
+            continue
+        f_w.write(line)
+        
+        
+#second way
+import shutil
+with open('/path/to/file', 'r') as f:
+    with open('/path/to/file.new', 'w') as g:
+        for line in f.readlines():
+            if '/local/server' not in line:             
+                g.write(line)
+shutil.move('/path/to/file.new', '/path/to/file')
